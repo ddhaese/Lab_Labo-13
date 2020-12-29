@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="David D’Haese" />
+  <title>Labo 13</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Labo_13_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="Labo_13_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="css\grey_matters.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <link href="Labo_13_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="Labo_13_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Labo 13</h1>
+    <h2 class="author">David D’Haese</h2>
+    <h3 class="date">Gepubliceerd op 2020-12-29</h3>
+</section>
+
+<section id="gebruik-van-presentatie" class="title-slide slide level2"><h2>Gebruik van presentatie</h2><p>Dit is een 2-dimensionale Revealjs presentatie. Je kan navigeren met de knoppen onderaan rechts of met de toetsen ←, ↑, ↓, →, <code>HOME</code> en <code>END</code>. Gebruik de knop onderaan links voor de inhoudstafel en gebruik de <code>ESC</code>-toets om een grafisch overzicht van de presentatie te verkrijgen.</p></section>
+<section id="leerdoelen-voor-dit-labo" class="title-slide slide level2"><h2>Leerdoelen voor dit labo</h2><ul>
+<li>Leren werken met de functionele API van Keras</li>
+<li>Creëren van vertakte NN</li>
+<li>Visualiseren van de architectuur-graaf van een NN</li>
+<li>Tijdelijk bewaren en weer ophalen van een NN</li>
+<li>Onderzoeken van de getrainde parameters van een NN</li>
+<li>Visualiseren van het verloop van de training met Tensorboard</li>
+</ul></section>
+<section><section id="keras-functionele-api" class="title-slide slide level2"><h2>Keras Functionele API</h2><script>
+window.addEventListener("load", function () {
+  let body = document.getElementsByTagName("body")[0];
+  body.oncopy = () => (false);
+  body.oncut = () => (false);
+  
+  const codes = document.getElementsByTagName("code");
+  const codeList = Array.prototype.slice.call(codes);
+  
+  codeList.forEach(code => {
+    code.oncopy = () => (false);
+    code.oncut = () => (false);
+  });
+})
+</script>
+<p>Met de <a href="https://keras.io/guides/sequential_model/"><em>Sequential API</em></a> van Keras kunnen we lijnvormig NN maken.</p>
+<p><img data-src="img/sequential.svg" alt="Sequential NN" /></p>
+<p>↓</p>
+<p><small>(Ga nu naar onder, let op de kleur van de navigatieknoppen rechts onder)</small></p></section><section id="keras-functionele-api-vertakkingen" class="slide level3">
+<h3>Keras Functionele API — Vertakkingen</h3>
+<p>Met de <a href="https://keras.io/guides/functional_api/"><em>Functional API</em></a> kunnen we vertakte en complexere NN maken.</p>
+<p><img data-src="img/siamese.png" alt="Siamese NN" /></p>
+<p><img data-src="img/residual.svg" alt="Resisdual NN" /></p>
+</section><section id="keras-functionele-api-autoencoders" class="slide level3">
+<h3>Keras Functionele API — Autoencoders</h3>
+<p>Zonder het te weten, zagen we eerder een voorbeeld van een vertakt NN in de theorie, tijdens het bespreken van de <a href="https://ddhaese.github.io/Course_Machine-Learning/autoencoders.html#autoencoder-op-de-mnist-dataset">autoencoder</a>. Andere voorbeelden van zulke vertakte NN zijn zogenaamde siamese en residuele NN. Laten we nu proberen zelf een vertakt NN te maken.</p>
+</section></section>
+<section id="doelstelling" class="title-slide slide level2"><h2>Doelstelling</h2><p>Het doel van dit labo is om te proberen te achterhalen in hoeverre examen-resultaten voorspeld kunnen worden a.d.h.v. geslacht, etniciteit, het opleidingsniveau van de ouders en of de student gratis mag lunchen. We gaan dit doel door een zogenaamd <em>ensemble</em> model op te stellen. Dit is een model dat twee of meer andere modellen traint en de resultaten ervan uitmiddelt.</p></section>
+<section id="werkwijze-voor-dit-labo" class="title-slide slide level2"><h2>Werkwijze voor dit labo</h2><p>De werkwijze voor dit labo is gelijkaardig aan wat je mag verwachten tijdens het examen:</p>
+<ol type="1">
+<li>Download het antwoordformulier <em>Antwoord.Rmd</em> van <a href="https://learning.ap.be/course/view.php?id=35676#section-3">Digitap</a></li>
+<li>Maak een Python bestand aan met naam en pad naar keuze in IDE naar keuze</li>
+<li>Schrijf hierin <strong>alle</strong> code in overeenstemming met de opdracht</li>
+<li>Plak de code alsook de output in het antwoordformulier</li>
+<li>Dien dit antwoordformulier in, samen met nog enkele andere bestanden, op Digitap (meer details op laatste dia).</li>
+</ol></section>
+<section><section id="omgeving" class="title-slide slide level2"><h2>Omgeving</h2><p>We beginnen met het identificeren van ons <em>Operating system</em> (OS). Natuurlijk is dat enkel nuttig voor de lector om hiermee rekening te houden tijdens de evaluatie.</p>
+<p>↓</p></section><section id="code-om-systeeminfo-af-te-drukken" class="slide level3">
+<h3>Code om systeeminfo af te drukken</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> platform, socket, re, uuid, psutil</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>sysinfo <span class="op">=</span> <span class="ss">f&quot;&quot;&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="ss">  Platform: </span><span class="sc">{</span>platform<span class="sc">.</span>system()<span class="sc">}</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="ss">  Platform-release: </span><span class="sc">{</span>platform<span class="sc">.</span>release()<span class="sc">}</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="ss">  Platform-version: </span><span class="sc">{</span>platform<span class="sc">.</span>version()<span class="sc">}</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="ss">  Architecture: </span><span class="sc">{</span>platform<span class="sc">.</span>machine()<span class="sc">}</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="ss">  Hostname: </span><span class="sc">{</span>socket<span class="sc">.</span>gethostname()<span class="sc">}</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="ss">  Ip-address: </span><span class="sc">{</span>socket<span class="sc">.</span>gethostbyname(socket.gethostname())<span class="sc">}</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="ss">  Mac-address: </span><span class="sc">{</span><span class="st">&quot;:&quot;</span><span class="sc">.</span>join(re.findall(<span class="st">&quot;..&quot;</span>, <span class="st">&quot;</span><span class="sc">%012x</span><span class="st">&quot;</span> <span class="op">%</span> uuid.getnode()))<span class="sc">}</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="ss">  Processor: </span><span class="sc">{</span>platform<span class="sc">.</span>processor()<span class="sc">}</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="ss">  Ram: </span><span class="sc">{</span><span class="bu">str</span>(<span class="bu">round</span>(psutil.virtual_memory().total <span class="op">/</span> (<span class="fl">1024.0</span> <span class="op">**</span><span class="dv">3</span>)))<span class="op">+</span><span class="st">&quot; GB&quot;</span><span class="sc">}</span><span class="ss">&quot;&quot;&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="bu">print</span>(sysinfo)</span></code></pre></div>
+</section><section id="pip-list" class="slide level3">
+<h3>Pip list</h3>
+<p>Er zal je in het antwoordformulier ook gevraagd worden om een lijst te bezorgen van de geïnstalleerde Python modules:</p>
+<pre class="cmd"><code>pip list</code></pre>
+</section></section>
+<section id="importeren-externe-modules" class="title-slide slide level2"><h2>Importeren externe modules</h2><p>We beginnen uiteraard met het importeren van de nodige Python modules, hopelijk hier niets nieuw onder de zon:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="im">from</span> keras.layers <span class="im">import</span> Dense, Dropout, average</span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="im">from</span> keras.utils <span class="im">import</span> plot_model</span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="im">from</span> keras.models <span class="im">import</span> load_model</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="im">from</span> random <span class="im">import</span> sample, seed</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>seed(<span class="dv">41</span>)</span></code></pre></div>
+<blockquote>
+<p>Het kan zijn dat je onderweg nog wat modules moet importeren…</p>
+</blockquote></section>
+<section><section id="inladen-data" class="title-slide slide level2"><h2>Inladen data</h2><p>De data zullen dit maal afkomstig zijn van <a href="https://www.kaggle.com/spscientist/students-performance-in-exams">Kaggle</a>. Het gaat om resultaten van drie toetsen (wiskunde, lezen en schrijven) bij 7000 studenten ↓.</p>
+<pre><code>##     Gender Group_A Group_B Group_C Group_D Group_E Parent_Level_Associate
+##  1:      1       0       1       0       0       0                      1
+##  2:      0       0       1       0       0       0                      0
+##  3:      1       0       0       0       1       0                      1
+##  4:      0       0       1       0       0       0                      0
+##  5:      1       0       0       0       0       1                      0
+##  6:      0       0       1       0       0       0                      0
+##  7:      1       0       0       0       1       0                      0
+##  8:      0       0       1       0       0       0                      0
+##  9:      1       0       0       1       0       0                      0
+## 10:      1       0       1       0       0       0                      0
+## 11:      1       0       1       0       0       0                      0
+## 12:      0       0       0       1       0       0                      0
+## 13:      0       0       1       0       0       0                      0
+## 14:      1       0       0       0       0       1                      0
+## 15:      0       0       0       1       0       0                      1
+## 16:      0       1       0       0       0       0                      0
+## 17:      0       1       0       0       0       0                      0
+## 18:      1       0       1       0       0       0                      0
+## 19:      1       0       0       1       0       0                      0
+## 20:      1       0       0       1       0       0                      0
+##     Parent_Level_Bachelor Parent_Level_College Parent_Level_High_School
+##  1:                     0                    0                        0
+##  2:                     0                    0                        1
+##  3:                     0                    0                        0
+##  4:                     0                    0                        1
+##  5:                     0                    1                        0
+##  6:                     0                    0                        0
+##  7:                     0                    1                        0
+##  8:                     0                    1                        0
+##  9:                     1                    0                        0
+## 10:                     0                    0                        1
+## 11:                     0                    0                        1
+## 12:                     0                    0                        1
+## 13:                     0                    0                        1
+## 14:                     0                    0                        1
+## 15:                     0                    0                        0
+## 16:                     0                    0                        1
+## 17:                     0                    1                        0
+## 18:                     0                    1                        0
+## 19:                     0                    1                        0
+## 20:                     0                    1                        0
+##     Parent_Level_Master Lunch_Free Prep_Completed Math Reading Writing
+##  1:                   0          0              0   68      78      74
+##  2:                   0          0              0   33      32      30
+##  3:                   0          1              0   70      95      91
+##  4:                   0          0              0   64      45      48
+##  5:                   0          0              1   73      79      84
+##  6:                   1          0              1   57      55      61
+##  7:                   0          0              0   38      54      47
+##  8:                   0          1              0   63      55      51
+##  9:                   0          1              1   62      72      75
+## 10:                   0          0              0   59      72      74
+## 11:                   0          1              1   46      56      54
+## 12:                   0          1              0   52      63      54
+## 13:                   0          1              0   71      77      68
+## 14:                   0          0              0   86      79      79
+## 15:                   0          1              0   48      42      42
+## 16:                   0          0              0   77      74      65
+## 17:                   0          0              0   84      76      76
+## 18:                   0          1              0   74      81      76
+## 19:                   0          1              1   70      82      86
+## 20:                   0          0              1   70      89      88</code></pre></section><section id="verklaring-van-de-variabelen" class="slide level3">
+<h3>Verklaring van de variabelen</h3>
+<ul>
+<li><code>Gender</code>: (onbepaald) geslacht van de student</li>
+<li><code>Group_</code>·: dummy-variabele die een (onbepaalde) etniciteit aangeeft</li>
+<li><code>Parent_Level_</code>·: dummy-variabele die het opleidingsniveau van de ouders aangeeft</li>
+<li><code>Lunch_free</code>: of de student gratis mag lunchen</li>
+<li><code>Prep_Completed</code>: of de student klaar is geraakt met zijn voorbereidingen</li>
+<li><code>Math</code>: Resultaat op 100 van wiskunde toets</li>
+<li><code>Reading</code>: Resultaat op 100 van lees-toets</li>
+<li><code>Writing</code>: Resultaat op 100 van schrijf-toets</li>
+</ul>
+</section><section id="opladen-data-in-python" class="slide level3">
+<h3>Opladen data in Python</h3>
+<p>Hier is de Python code om data in te laden:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>exams <span class="op">=</span> np.genfromtxt(<span class="st">&quot;dat/exams_prepped.tsv&quot;</span>, skip_header <span class="op">=</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>Controleer of de data in het juiste formaat staan:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Sample from exams dataset </span><span class="sc">{</span>exams<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">:&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="bu">print</span>(exams[sample(<span class="bu">range</span>(exams.shape[<span class="dv">0</span>]), <span class="dv">15</span>),])</span></code></pre></div>
+</section><section id="splitsen-in-trainings-set-en-test-set" class="slide level3">
+<h3>Splitsen in trainings set en test set</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>x <span class="op">=</span> exams[:, a]</span>
+<span id="cb7-2"><a href="#cb7-2"></a>y <span class="op">=</span> exams[:, b]</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a>x_trn, x_tst, y_trn, y_tst <span class="op">=</span> train_test_split(x, y, …)</span></code></pre></div>
+<p>Vervang in bovenstaande code <code>a</code> door het kolom-bereik van de onafhankelijke variabelen en <code>b</code> door dat van de afhankelijke variabelen. Vervang daarna ‘<code>…</code>’ door de nodige argumenten om de verhouding test:training op 1:3 te zetten en om het getal 41 als seed voor de pseudo-random generator te gebruiken.</p>
+</section></section>
+<section><section id="opstellen-architectuur" class="title-slide slide level2"><h2>Opstellen Architectuur</h2><p>De bedoeling is dat je zelf de onderstaande architectuur uitbouwt:</p>
+<p><img data-src="img/architectuur_doel.svg" alt="Beoogde architectuur opdracht" /></p></section><section id="legende-architectuur" class="slide level3">
+<h3>Legende architectuur</h3>
+<p>In bovenstaande figuur vind je al de nodige informatie. <em>in</em> en <em>out</em> staan voor de dimensies van de invoer- en de uitvoer-laag, respectievelijk. De voorgestelde namen van de variabelen voor de lagen staan cursief gedrukt en beginnen met een kleine letter. De typen van de lagen staan met een hoofdletter aangegeven. De argumenten bij de lagen en de modellen staan tussen haakjes, opgelet hierbij: ‘elu’ ≠ ‘relu’. De ‘·’ in de dimensies staat natuurlijk voor het aantal instanties/minibatches.</p>
+</section><section id="twee-submodellen" class="slide level3">
+<h3>Twee submodellen</h3>
+<p>Merk dus op dat er sprake is van twee sub-modellen (<code>sub_model_1</code> en <code>sub_model_2</code>) die genest zitten binnen één groot moeder-model (<code>model</code>). Merk verder op dat beide sub-modellen de invoerlaag delen.</p>
+</section><section id="invoerlaag" class="slide level3">
+<h3>Invoerlaag</h3>
+<p>We beginnen bij de invoerlaag. In plaats van door middel van een argument op de tweede laag van het NN, namelijk <code>input_shape</code>, gaan we de invoerlaag manueel definiëren:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>input_layer <span class="op">=</span> keras.Input(shape <span class="op">=</span> …)</span></code></pre></div>
+</section><section id="meer-info-shape-argument-invoerlaag" class="slide level3">
+<h3>Meer info shape argument invoerlaag</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">input</span> <span class="op">=</span> keras.Input(shape <span class="op">=</span> …)</span></code></pre></div>
+<p>Vervang de ‘<code>…</code>’ door een <a href="https://www.w3schools.com/python/python_tuples.asp">tuple</a> waarin de dimensies van elke <a href="https://ddhaese.github.io/Course_Machine-Learning/data.html#de-analyse-dataset">instantie</a> staat opgegeven. Bestaat de invoer bijvoorbeeld uit de RGB-waarden van 1000 kleurenfoto’s met een formaat van 50 × 80 pixels, dan zou je de tuple <code>(50, 80, 3)</code> opgeven en <em>niet</em> <code>1000</code>.</p>
+</section><section id="de-verborgen-lagen-toevoegen" class="slide level3">
+<h3>De verborgen lagen toevoegen</h3>
+<p>Om de verborgen lagen van het NN toe te voegen, passen we hetzelfde principe toe als in eerdere labo’s. De nieuw gedefinieerde laag is een <em>functie</em> (de zogenaamde <em>layer call action</em>) die je aanroept met voorgaande lagen (in dit geval <code>input</code>) als argument en je krijgt de nieuwe architectuur als resultaat:</p>
+</section><section id="verborgen-laag-code" class="slide level3">
+<h3>Verborgen laag code</h3>
+<p>Hier is voorbeeld-code voor het toevoegen van de eerste twee <code>Dense</code>-lagen van <code>sub_model_1</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>hidden_1_1 <span class="op">=</span> Dense(…, activation <span class="op">=</span> …)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>architecture <span class="op">=</span> hidden_1_1(<span class="bu">input</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>hidden_1_2 <span class="op">=</span> Dense(…, activation <span class="op">=</span> …)</span>
+<span id="cb10-5"><a href="#cb10-5"></a>architecture <span class="op">=</span> hidden_1_2(architecture)</span></code></pre></div>
+</section><section id="vastleggen-architectuur" class="slide level3">
+<h3>Vastleggen architectuur</h3>
+<p>We voegen nu de eerste uitvoerlaag toe en koppelen de resulterende architectuur met het eerste sub-model:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>output_1 <span class="op">=</span> …</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>sub_model_1 <span class="op">=</span> keras.Model(<span class="bu">input</span>, output_1, name <span class="op">=</span> <span class="st">&quot;sub_model_1&quot;</span>)</span></code></pre></div>
+</section><section id="compileren-eerste-sub_model" class="slide level3">
+<h3>Compileren eerste sub_model</h3>
+<p>Met de ondertussen bekende code:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>sub_model_1.<span class="bu">compile</span>(loss <span class="op">=</span> <span class="st">&quot;mse&quot;</span>, optimizer <span class="op">=</span> <span class="st">&quot;adam&quot;</span>, metrics <span class="op">=</span> [<span class="st">&quot;accuracy&quot;</span>])</span></code></pre></div>
+</section><section id="het-tweede-sub-model" class="slide level3">
+<h3>Het tweede sub-model</h3>
+<p>Bouw nu zelfstandig het tweede sub-model uit volgens het <a href="#/opstellen-architectuur">opgegeven schema</a>.</p>
+</section><section id="samenvoegen-sub-modellen" class="slide level3">
+<h3>Samenvoegen sub-modellen</h3>
+<p>Hier is de code voor het samenvoegen van de sub-modellen. Merk op hoe je de sub-modellen kunt aanroepen als ware het lagen!</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>output <span class="op">=</span> average([sub_model_1(<span class="bu">input</span>), sub_model_2(<span class="bu">input</span>)])</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>model <span class="op">=</span> keras.Model(<span class="bu">input</span>, output, name <span class="op">=</span> <span class="st">&quot;model&quot;</span>)</span></code></pre></div>
+<p>Dit is wat de functionele API Keras in staat stelt om vertakkingen en geneste structuren te definiëren.</p>
+</section><section id="visualisatie-architectuur" class="slide level3">
+<h3>Visualisatie architectuur</h3>
+<p>Laten we de architectuur eerst nakijken alvorens de training aan te vatten. We gaan dat op twee manieren doen: als tekst en als diagram.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>model.summary()</span>
+<span id="cb14-2"><a href="#cb14-2"></a>plot_model(model, <span class="st">&quot;ensemble.png&quot;</span>, show_shapes <span class="op">=</span> <span class="va">True</span>,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  expand_nested <span class="op">=</span> <span class="va">True</span>)</span></code></pre></div>
+<blockquote>
+<p>Opgelet: Het kan zijn dat je gevraagd wordt om <a href="https://graphviz.gitlab.io/">Graphviz</a> te installeren.</p>
+</blockquote>
+</section><section id="resultaat-visualisatie-architectuur" class="slide level3">
+<h3>Resultaat visualisatie architectuur</h3>
+<p>Als je alles juist hebt gedaan zou je dit moeten krijgen:</p>
+<p><img data-src="img/ensemble.png" alt="Architectuur van ons model" /></p>
+</section><section id="opladen-visualisatie-architectuur" class="slide level3">
+<h3>Opladen visualisatie architectuur</h3>
+<p>Op de laatste dia van deze presentatie zal je gevraagd worden om jouw eigen versie van <em>ensemble.png</em> op te laden.</p>
+</section></section>
+<section><section id="trainen-van-het-model" class="title-slide slide level2"><h2>Trainen van het model</h2><p>We kunnen nu de training starten. Dit gebeurt volledig als voorheen. We zorgen wel dat we de voortgang van het trainen kunnen volgen met tensorboard:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>tb_callback <span class="op">=</span> keras.callbacks.TensorBoard(<span class="st">&quot;./tb&quot;</span>, update_freq <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>model.fit(…, …, batch_size <span class="op">=</span> <span class="dv">32</span>, epochs <span class="op">=</span> <span class="dv">50</span>,</span>
+<span id="cb15-4"><a href="#cb15-4"></a>  validation_split <span class="op">=</span> <span class="fl">0.2</span>, callbacks <span class="op">=</span> …)</span></code></pre></div>
+<p><small>(je kan Tensorboard opstarten met de code: <code>tensorboard --logdir tb</code>)</small></p></section><section id="screenshot-tensorboard" class="slide level3">
+<h3>Screenshot Tensorboard</h3>
+<p>Neem dan een screenshot van Tensorboard. Let erop dat je de juiste runs aanduidt en dat de smoothing af staat:</p>
+<p><img data-src="img/tensorboard.png" alt="Screenshot tensorboard" /></p>
+</section></section>
+<section><section id="bewaren-van-het-model" class="title-slide slide level2"><h2>Bewaren van het model</h2><p>Je kan een <em>getraind</em> keras model eenvoudig serialiseren door middel van de <code>save</code> methode. Dat is bijvoorbeeld handig wanneer het trainen te lang duurt en je moet het proces tijdelijk onderbreken.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>model.save(…)</span></code></pre></div></section><section id="onderdelen-bewaard-model" class="slide level3">
+<h3>Onderdelen bewaard model</h3>
+<p>Het bewaard model bevat:</p>
+<ul>
+<li>De architectuur</li>
+<li>De aangeleerde parameters (gewichten) <span class="math inline">\(\theta\)</span></li>
+<li>De configuratie van de training met o.a. de hyperparameters</li>
+<li>De status van de <em>optimizer</em> zodat de training kan worden opgestart vanaf punt waarop het werd onderbroken</li>
+</ul>
+</section><section id="opdracht-rond-bewaren-van-het-model" class="slide level3">
+<h3>Opdracht rond bewaren van het model</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>model.save(…)</span></code></pre></div>
+<p>Vervang “<code>…</code>” door de naam van de sub-folder waarin je het model wil bewaren (bijvoorbeeld <code>"tf"</code>). Je kan nu het meeste van de voorgaande code eventjes in commentaar zetten (<code>ctrl + /</code> in VS Code), want het model is bewaard (normaal zou je in meerdere bestanden werken…)</p>
+</section></section>
+<section><section id="ophalen-en-onderzoek-van-een-bewaard-model" class="title-slide slide level2"><h2>Ophalen en onderzoek van een bewaard model</h2><p>Je kan een geserialiseerd model opnieuw ophalen met de volgende opdracht:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>model <span class="op">=</span> keras.models.load_model(…)</span></code></pre></div>
+<p>Vervang “<code>…</code>” door de naam van de sub-folder waarin je het model bewaarde.</p></section><section id="evalueren-van-de-prestaties-van-het-model" class="slide level3">
+<h3>Evalueren van de prestaties van het model</h3>
+<p>Dit heb je natuurlijk ook al eerder gedaan, dus dat zou moeten lukken:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>test_scores <span class="op">=</span> model.evaluate(…, …, verbose <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(<span class="ss">f&quot;Test loss: </span><span class="sc">{</span><span class="bu">round</span>(test_scores[<span class="dv">0</span>], <span class="dv">2</span>)<span class="sc">}</span><span class="ss">&quot;</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a><span class="bu">print</span>(<span class="ss">f&quot;Test accuracy: </span><span class="sc">{</span><span class="bu">round</span>(test_scores[<span class="dv">1</span>], <span class="dv">2</span>)<span class="sc">}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<p>Als alles goed ging krijg je dit te zien:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">Test loss</span><span class="kw">:</span><span class="at"> </span><span class="fl">163.47</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">Test accuracy</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.65</span></span></code></pre></div>
+</section><section id="onderzoeken-parameters-van-een-model" class="slide level3">
+<h3>Onderzoeken parameters van een model</h3>
+<p>We kunnen nu de parameters onderzoeken met onderstaande code.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>weights <span class="op">=</span> model.layers[<span class="dv">1</span>].layers[<span class="dv">1</span>].get_weights()[<span class="dv">0</span>]</span>
+<span id="cb21-2"><a href="#cb21-2"></a>importance_rough <span class="op">=</span> [<span class="bu">round</span>(<span class="bu">sum</span>(node)) <span class="cf">for</span> node <span class="kw">in</span> weights]</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="bu">print</span>(importance_rough)</span></code></pre></div>
+<blockquote>
+<p>Opgelet, bovenstaande is slechts een ruwe benadering van de belangrijkheid van de onafhankelijke variabelen. Er komt bij NN veel méér bij kijken, maar dat zou ons hier te ver leiden.</p>
+</blockquote>
+</section><section id="conclusie" class="slide level3">
+<h3>Conclusie</h3>
+<p>Voorgaande waarschuwing even negerend, probeer bovenstaande code goed te begrijpen. Kan je een conclusie trekken uit <code>importance_rough</code>? Formuleer jouw conclusie op het antwoordformulier <em>Antwoord.Rmd</em>.</p>
+</section></section>
+<section id="wat-moet-je-indienen-voor-deze-opdracht" class="title-slide slide level2"><h2>Wat moet je indienen voor deze opdracht?</h2><p>Op <a href="https://learning.ap.be/course/view.php?id=35676#section-3">Digitap</a> dien je een zip-bestand met daarin:</p>
+<ul>
+<li>Het ingevuld <em>Antwoord.Rmd</em> bestand</li>
+<li>De afbeelding met de architectuur: <em>ensemble.png</em></li>
+<li>Screenshot van Tensorboard <em>tensorboard.png</em></li>
+</ul></section>
+<section id="succes" class="title-slide slide level2"><h2>Succes!</h2><p>(einde presentatie)</p></section>
+    </div>
+  </div>
+
+  <script src="Labo_13_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="Labo_13_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+          numbers: true,
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'Labo_13_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'Labo_13_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
