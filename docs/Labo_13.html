@@ -519,11 +519,11 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <section>
     <h1 class="title">Labo 13</h1>
     <h2 class="author">David D’Haese</h2>
-    <h3 class="date">Gepubliceerd op 2020-12-29</h3>
+    <h3 class="date">Gepubliceerd op 2020-12-31</h3>
 </section>
 
 <section id="gebruik-van-presentatie" class="title-slide slide level2"><h2>Gebruik van presentatie</h2><p>Dit is een 2-dimensionale Revealjs presentatie. Je kan navigeren met de knoppen onderaan rechts of met de toetsen ←, ↑, ↓, →, <code>HOME</code> en <code>END</code>. Gebruik de knop onderaan links voor de inhoudstafel en gebruik de <code>ESC</code>-toets om een grafisch overzicht van de presentatie te verkrijgen.</p></section>
-<section id="leerdoelen-voor-dit-labo" class="title-slide slide level2"><h2>Leerdoelen voor dit labo</h2><ul>
+<section id="leerdoelen-van-dit-labo" class="title-slide slide level2"><h2>Leerdoelen van dit labo</h2><ul>
 <li>Leren werken met de functionele API van Keras</li>
 <li>Creëren van vertakte NN</li>
 <li>Visualiseren van de architectuur-graaf van een NN</li>
@@ -554,11 +554,11 @@ window.addEventListener("load", function () {
 <p>Met de <a href="https://keras.io/guides/functional_api/"><em>Functional API</em></a> kunnen we vertakte en complexere NN maken.</p>
 <p><img data-src="img/siamese.png" alt="Siamese NN" /></p>
 <p><img data-src="img/residual.svg" alt="Resisdual NN" /></p>
-</section><section id="keras-functionele-api-autoencoders" class="slide level3">
-<h3>Keras Functionele API — Autoencoders</h3>
-<p>Zonder het te weten, zagen we eerder een voorbeeld van een vertakt NN in de theorie, tijdens het bespreken van de <a href="https://ddhaese.github.io/Course_Machine-Learning/autoencoders.html#autoencoder-op-de-mnist-dataset">autoencoder</a>. Andere voorbeelden van zulke vertakte NN zijn zogenaamde siamese en residuele NN. Laten we nu proberen zelf een vertakt NN te maken.</p>
+</section><section id="keras-functionele-api-auto-encoders" class="slide level3">
+<h3>Keras Functionele API — Auto-encoders</h3>
+<p>Zonder het te weten, zagen we eerder een voorbeeld van een vertakt NN in de theorie, tijdens het bespreken van de <a href="https://ddhaese.github.io/Course_Machine-Learning/autoencoders.html#auto-encoder-op-de-mnist-dataset">auto-encoder</a>. Andere voorbeelden van zulke vertakte NN zijn zogenaamde siamese en residuele NN. Laten we nu proberen zelf een vertakt NN te maken.</p>
 </section></section>
-<section id="doelstelling" class="title-slide slide level2"><h2>Doelstelling</h2><p>Het doel van dit labo is om te proberen te achterhalen in hoeverre examen-resultaten voorspeld kunnen worden a.d.h.v. geslacht, etniciteit, het opleidingsniveau van de ouders en of de student gratis mag lunchen. We gaan dit doel door een zogenaamd <em>ensemble</em> model op te stellen. Dit is een model dat twee of meer andere modellen traint en de resultaten ervan uitmiddelt.</p></section>
+<section id="doelstelling" class="title-slide slide level2"><h2>Doelstelling</h2><p>Het doel van dit labo is om te achterhalen in hoeverre examenresultaten voorspeld kunnen worden a.d.h.v. geslacht, etniciteit, het opleidingsniveau van de ouders en of de student gratis mag lunchen. Om dit doel te bereiken stellen we een zogenaamd <em>ensemble</em> model op. Dit is een model dat twee of meer andere modellen traint en de resultaten ervan uitmiddelt.</p></section>
 <section id="werkwijze-voor-dit-labo" class="title-slide slide level2"><h2>Werkwijze voor dit labo</h2><p>De werkwijze voor dit labo is gelijkaardig aan wat je mag verwachten tijdens het examen:</p>
 <ol type="1">
 <li>Download het antwoordformulier <em>Antwoord.Rmd</em> van <a href="https://learning.ap.be/course/view.php?id=35676#section-3">Digitap</a></li>
@@ -602,7 +602,7 @@ window.addEventListener("load", function () {
 <blockquote>
 <p>Het kan zijn dat je onderweg nog wat modules moet importeren…</p>
 </blockquote></section>
-<section><section id="inladen-data" class="title-slide slide level2"><h2>Inladen data</h2><p>De data zullen dit maal afkomstig zijn van <a href="https://www.kaggle.com/spscientist/students-performance-in-exams">Kaggle</a>. Het gaat om resultaten van drie toetsen (wiskunde, lezen en schrijven) bij 7000 studenten ↓.</p>
+<section><section id="inladen-data" class="title-slide slide level2"><h2>Inladen data</h2><p>De data zullen ditmaal afkomstig zijn van <a href="https://www.kaggle.com/spscientist/students-performance-in-exams">Kaggle</a>. Het gaat om resultaten van drie toetsen (wiskunde, lezen en schrijven) bij 7000 studenten ↓.</p>
 <pre><code>##     Gender Group_A Group_B Group_C Group_D Group_E Parent_Level_Associate
 ##  1:      1       0       1       0       0       0                      1
 ##  2:      0       0       1       0       0       0                      0
@@ -674,8 +674,8 @@ window.addEventListener("load", function () {
 <li><code>Lunch_free</code>: of de student gratis mag lunchen</li>
 <li><code>Prep_Completed</code>: of de student klaar is geraakt met zijn voorbereidingen</li>
 <li><code>Math</code>: Resultaat op 100 van wiskunde toets</li>
-<li><code>Reading</code>: Resultaat op 100 van lees-toets</li>
-<li><code>Writing</code>: Resultaat op 100 van schrijf-toets</li>
+<li><code>Reading</code>: Resultaat op 100 van leestoets</li>
+<li><code>Writing</code>: Resultaat op 100 van schrijftoets</li>
 </ul>
 </section><section id="opladen-data-in-python" class="slide level3">
 <h3>Opladen data in Python</h3>
@@ -759,13 +759,24 @@ window.addEventListener("load", function () {
 <div class="sourceCode" id="cb15"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>tb_callback <span class="op">=</span> keras.callbacks.TensorBoard(<span class="st">&quot;./tb&quot;</span>, update_freq <span class="op">=</span> <span class="dv">1</span>)</span>
 <span id="cb15-2"><a href="#cb15-2"></a></span>
 <span id="cb15-3"><a href="#cb15-3"></a>model.fit(…, …, batch_size <span class="op">=</span> <span class="dv">32</span>, epochs <span class="op">=</span> <span class="dv">50</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>  validation_split <span class="op">=</span> <span class="fl">0.2</span>, callbacks <span class="op">=</span> …)</span></code></pre></div>
-<p><small>(je kan Tensorboard opstarten met de code: <code>tensorboard --logdir tb</code>)</small></p></section><section id="screenshot-tensorboard" class="slide level3">
+<span id="cb15-4"><a href="#cb15-4"></a>  validation_split <span class="op">=</span> <span class="fl">0.2</span>, callbacks <span class="op">=</span> …)</span></code></pre></div></section><section id="trainen-van-het-model-opgelet" class="slide level3">
+<h3>Trainen van het model — OPGELET</h3>
+<ul>
+<li>Je kan Tensorboard opstarten met de code: <code>tensorboard --logdir tb</code></li>
+<li>Denk eraan om telkens de folder <code>tb</code> te verwijderen alvorens je een nieuwe run start</li>
+</ul>
+</section><section id="grafieken-tensorboard" class="slide level3">
+<h3>Grafieken Tensorboard</h3>
+<p>In het dashboard van Tensorboard vind je meerdere grafieken terug. Of wel op het niveau van de ‘steps’, ofwel op het niveau van de epochs. Per step worden er in ons geval 32 rijen van onze dataset genomen. Eén epoch komt overeen met het doorlopen van alle rijen van de trainingset. In het totaal zouden er 50 epochs gelopen moeten zijn. Op de grafiek zien we dat er ± 6600 steps zijn uitgevoerd, dat maakt de verhouding steps per epoch = 6600 / 50 = 132. Reken eens na of dit kan kloppen!</p>
+</section><section id="validatie-versus-trainingset" class="slide level3">
+<h3>Validatie versus trainingset</h3>
+<p>Als alles goed gaat, zou je een resultaat moeten bekomen zoals getoond op de volgende dia. De accuraatheid voor de validatieset en de trainingset lopen erg gelijk. Dat betekent dat er noch over-fitting, noch onder-fitting optreedt! Als je dit niet helemaal begrijpt, kijk dan zeker de theorie er nog eens op na.</p>
+</section><section id="screenshot-tensorboard" class="slide level3">
 <h3>Screenshot Tensorboard</h3>
 <p>Neem dan een screenshot van Tensorboard. Let erop dat je de juiste runs aanduidt en dat de smoothing af staat:</p>
 <p><img data-src="img/tensorboard.png" alt="Screenshot tensorboard" /></p>
 </section></section>
-<section><section id="bewaren-van-het-model" class="title-slide slide level2"><h2>Bewaren van het model</h2><p>Je kan een <em>getraind</em> keras model eenvoudig serialiseren door middel van de <code>save</code> methode. Dat is bijvoorbeeld handig wanneer het trainen te lang duurt en je moet het proces tijdelijk onderbreken.</p>
+<section><section id="bewaren-van-het-model" class="title-slide slide level2"><h2>Bewaren van het model</h2><p>Je kan een <em>getraind</em> keras model eenvoudig serialiseren door middel van de <code>save</code> methode. Dat is bv. handig wanneer het trainen te lang duurt en je het proces tijdelijk moet onderbreken.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>model.save(…)</span></code></pre></div></section><section id="onderdelen-bewaard-model" class="slide level3">
 <h3>Onderdelen bewaard model</h3>
 <p>Het bewaard model bevat:</p>
